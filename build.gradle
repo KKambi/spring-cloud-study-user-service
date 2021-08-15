@@ -32,6 +32,9 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    runtimeOnly group: 'com.h2database', name: 'h2', version: '1.3.148'
+    testImplementation group: 'com.h2database', name: 'h2', version: '1.3.148'
 }
 
 dependencyManagement {
