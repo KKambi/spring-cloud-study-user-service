@@ -6,9 +6,11 @@ import com.example.userservice.domain.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.UUID;
 
 @RequiredArgsConstructor
@@ -28,5 +30,20 @@ public class UserServiceImpl implements UserService {
         user.updatePassword(passwordEncoder.encode("encrypted_password"));
 
         userRepository.save(user);
+    }
+
+    @Override
+    public UserDto getUserByUserId(String userId) {
+        User user = userRepository.findByUserId(userId)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+
+        UserDto userDto = new ModelMapper().map(user, UserDto.class);
+        userDto.setOrders(Collections.emptyList());
+        return userDto;
+    }
+
+    @Override
+    public Iterable<User> getUserByAll() {
+        return userRepository.findAll();
     }
 }
