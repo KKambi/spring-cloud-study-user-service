@@ -3,7 +3,6 @@ package com.example.userservice.infra.config;
 import com.example.userservice.infra.filter.AuthenticationFilter;
 import com.example.userservice.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -17,12 +16,10 @@ import javax.servlet.Filter;
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Bean(name = "passwordEncoder")
-    public BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+
 
     private final Environment env;
+    private final BCryptPasswordEncoder passwordEncoder;
     private final UserService userService;
 
     // Authorization 설정
@@ -47,6 +44,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(
                 // 유저를 검증하는 비즈니스 로직이 필요
                 userService
-        ).passwordEncoder(passwordEncoder());
+        ).passwordEncoder(passwordEncoder);
     }
 }
