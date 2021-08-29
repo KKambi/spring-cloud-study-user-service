@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
         ModelMapper mapper = new ModelMapper();
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         User user = mapper.map(userDto, User.class);
-        user.updatePassword(passwordEncoder.encode("encrypted_password"));
+        user.updatePassword(passwordEncoder.encode(userDto.getPwd()));
 
         userRepository.save(user);
     }
