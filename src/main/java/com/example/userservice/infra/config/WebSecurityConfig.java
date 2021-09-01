@@ -28,7 +28,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .headers().frameOptions().disable().and()
-                .authorizeRequests().antMatchers("/users/**").hasIpAddress(("192.168.219.139")).and()
+                // 와이파이 IP Address 매번 변경되기 때문에 모두 허용하자...
+//                .authorizeRequests().antMatchers("/users/**").hasIpAddress(("192.168.219.139")).and()
+                .authorizeRequests().antMatchers("/users/**").permitAll().and()
                 .addFilter(getAuthenticationFilter());
     }
 
