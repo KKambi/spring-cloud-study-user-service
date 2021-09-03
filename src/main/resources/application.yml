@@ -32,5 +32,5 @@ greeting:
   message: Welcome to the Simple E-commerce
 
 token:
-  expiration_time: 3600
+  expiration_time: 3600000
   secret: user_token_secret
