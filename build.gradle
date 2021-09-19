@@ -32,6 +32,7 @@ dependencies {
     implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
     implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-config'
     implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-bootstrap'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator'
 
     compile "org.springframework.boot:spring-boot-starter-security"
 

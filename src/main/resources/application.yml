@@ -27,6 +27,13 @@ logging:
   level:
     com.example.userservice: DEBUG
 
+# Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, beans
+
 # Custom Properties
 greeting:
   message: Welcome to the Simple E-commerce

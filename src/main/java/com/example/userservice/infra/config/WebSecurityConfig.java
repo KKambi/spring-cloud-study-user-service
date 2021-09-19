@@ -23,6 +23,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     // Authorization 설정
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        // actuator 인증 X
+        http.authorizeRequests().antMatchers("/actuator/**").permitAll();
+
         http
                 .csrf().disable()
                 .headers().frameOptions().disable().and()
